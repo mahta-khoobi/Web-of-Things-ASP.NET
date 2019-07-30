@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -21,7 +22,9 @@ namespace IntelligentClassroom.Controllers
                 Resource= new Models.DTO.Resource
                 {
                     Sensors = new List<Models.DTO.Sensor>{ new Models.DTO.Sensor { Id = 1, Name = "Temperature", Description = "My Pi temperature", Type = "float", Unit = "celsius", Value = "27.5", TimeStamp = DateTime.Today, Frequency = 5000 } },
-                    Actuators = new List<Models.DTO.Actuator>()
+                    Actuators = new List<Models.DTO.Actuator>(),
+                    Ref_Device=1
+                    
                 }
                
             },
@@ -34,19 +37,20 @@ namespace IntelligentClassroom.Controllers
                 Resource= new Models.DTO.Resource
                 {
                     Sensors = new List<Models.DTO.Sensor>{ new Models.DTO.Sensor { Id = 1, Name = "Temperature", Description = "My Pi temperature", Type = "float", Unit = "celsius", Value = "27.5", TimeStamp = DateTime.Today, Frequency = 5000 } },
-                    Actuators = new List<Models.DTO.Actuator>()
+                    Actuators = new List<Models.DTO.Actuator>(),
+                    Ref_Device=2
                 }
                
             }
         };
         // GET: api/Device
-        public IEnumerable<Models.DTO.Device> Get()
+        public IEnumerable<Models.DTO.Device> GetDevice()
         {
             return Devices;
         }
 
         // GET: api/Device/5
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult GetDeviceById(int id)
         {
             var devices = Devices.FirstOrDefault((p) => p.Id == id);
             if (devices == null)
@@ -57,8 +61,11 @@ namespace IntelligentClassroom.Controllers
         }
 
         // POST: api/Device
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post(JObject jObject)
         {
+            var device = jObject["device"].ToObject<Models.DTO.Device>();
+            Devices.Add(device);
+            return Ok();
         }
 
         // PUT: api/Device/5
