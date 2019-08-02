@@ -13,10 +13,10 @@ namespace IntelligentClassroom.Models.EF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WebofThingsEntities : DbContext
+    public partial class WebofThingsEntities1 : DbContext
     {
-        public WebofThingsEntities()
-            : base("name=WebofThingsEntities")
+        public WebofThingsEntities1()
+            : base("name=WebofThingsEntities1")
         {
         }
     
@@ -25,12 +25,9 @@ namespace IntelligentClassroom.Models.EF
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Actuator> Actuator { get; set; }
-        public virtual DbSet<Command> Command { get; set; }
         public virtual DbSet<Device> Device { get; set; }
-        public virtual DbSet<Properties> Properties { get; set; }
-        public virtual DbSet<Resource> Resource { get; set; }
         public virtual DbSet<Sensor> Sensor { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Actuator> Actuator { get; set; }
     }
 }

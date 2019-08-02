@@ -17,9 +17,8 @@ namespace IntelligentClassroom.Models.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Device()
         {
-            this.Actuator = new HashSet<Actuator>();
-            this.Resource = new HashSet<Resource>();
             this.Sensor = new HashSet<Sensor>();
+            this.Actuator = new HashSet<Actuator>();
         }
     
         public int Id { get; set; }
@@ -29,10 +28,8 @@ namespace IntelligentClassroom.Models.EF
         public string Version { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Actuator> Actuator { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Resource> Resource { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sensor> Sensor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Actuator> Actuator { get; set; }
     }
 }

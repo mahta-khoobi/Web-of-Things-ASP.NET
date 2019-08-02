@@ -14,22 +14,11 @@ namespace IntelligentClassroom.Models.EF
     
     public partial class Actuator
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Actuator()
-        {
-            this.Command = new HashSet<Command>();
-            this.Properties = new HashSet<Properties>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Nullable<int> Device_Ref { get; set; }
     
         public virtual Device Device { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Command> Command { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Properties> Properties { get; set; }
     }
 }

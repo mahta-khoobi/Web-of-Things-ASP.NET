@@ -4,58 +4,31 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WebofThingsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WebofThingsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actuator">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Device_Ref" Type="int" />
-        </EntityType>
-        <EntityType Name="Command">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Value" Type="nvarchar" MaxLength="50" />
-          <Property Name="Actuator_Ref" Type="int" />
         </EntityType>
         <EntityType Name="Device">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="CurrentStatus" Type="nvarchar" MaxLength="50" />
           <Property Name="Version" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="Properties">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Value" Type="nvarchar" MaxLength="50" />
-          <Property Name="Readonly" Type="bit" />
-          <Property Name="Actuator_Ref" Type="int" />
-        </EntityType>
-        <EntityType Name="Resource">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Device_Ref" Type="int" />
-        </EntityType>
         <EntityType Name="Sensor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
@@ -87,42 +60,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Command_Actuator">
-          <End Role="Actuator" Type="Self.Actuator" Multiplicity="0..1" />
-          <End Role="Command" Type="Self.Command" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Actuator">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Command">
-              <PropertyRef Name="Actuator_Ref" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Properties_Actuator">
-          <End Role="Actuator" Type="Self.Actuator" Multiplicity="0..1" />
-          <End Role="Properties" Type="Self.Properties" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Actuator">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Properties">
-              <PropertyRef Name="Actuator_Ref" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Resource_Device">
-          <End Role="Device" Type="Self.Device" Multiplicity="0..1" />
-          <End Role="Resource" Type="Self.Resource" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Device">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Resource">
-              <PropertyRef Name="Device_Ref" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Sensor_Device">
           <End Role="Device" Type="Self.Device" Multiplicity="0..1" />
           <End Role="Sensor" Type="Self.Sensor" Multiplicity="*" />
@@ -137,98 +74,53 @@
         </Association>
         <EntityContainer Name="WebofThingsModelStoreContainer">
           <EntitySet Name="Actuator" EntityType="Self.Actuator" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Command" EntityType="Self.Command" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Device" EntityType="Self.Device" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Properties" EntityType="Self.Properties" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Resource" EntityType="Self.Resource" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sensor" EntityType="Self.Sensor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Actuator_Device" Association="Self.FK_Actuator_Device">
             <End Role="Device" EntitySet="Device" />
             <End Role="Actuator" EntitySet="Actuator" />
           </AssociationSet>
-          <AssociationSet Name="FK_Command_Actuator" Association="Self.FK_Command_Actuator">
-            <End Role="Actuator" EntitySet="Actuator" />
-            <End Role="Command" EntitySet="Command" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Properties_Actuator" Association="Self.FK_Properties_Actuator">
-            <End Role="Actuator" EntitySet="Actuator" />
-            <End Role="Properties" EntitySet="Properties" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Resource_Device" Association="Self.FK_Resource_Device">
-            <End Role="Device" EntitySet="Device" />
-            <End Role="Resource" EntitySet="Resource" />
-          </AssociationSet>
           <AssociationSet Name="FK_Sensor_Device" Association="Self.FK_Sensor_Device">
             <End Role="Device" EntitySet="Device" />
             <End Role="Sensor" EntitySet="Sensor" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WebofThingsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Actuator">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Device_Ref" Type="Int32" />
-          <NavigationProperty Name="Device" Relationship="Self.FK_Actuator_Device" FromRole="Actuator" ToRole="Device" />
-          <NavigationProperty Name="Command" Relationship="Self.FK_Command_Actuator" FromRole="Actuator" ToRole="Command" />
-          <NavigationProperty Name="Properties" Relationship="Self.FK_Properties_Actuator" FromRole="Actuator" ToRole="Properties" />
-        </EntityType>
-        <EntityType Name="Command">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Actuator_Ref" Type="Int32" />
-          <NavigationProperty Name="Actuator" Relationship="Self.FK_Command_Actuator" FromRole="Command" ToRole="Actuator" />
-        </EntityType>
         <EntityType Name="Device">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CurrentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Version" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Actuator" Relationship="Self.FK_Actuator_Device" FromRole="Device" ToRole="Actuator" />
-          <NavigationProperty Name="Resource" Relationship="Self.FK_Resource_Device" FromRole="Device" ToRole="Resource" />
-          <NavigationProperty Name="Sensor" Relationship="Self.FK_Sensor_Device" FromRole="Device" ToRole="Sensor" />
+          <NavigationProperty Name="Sensor" Relationship="WebofThingsModel.FK_Sensor_Device" FromRole="Device" ToRole="Sensor" />
+          <NavigationProperty Name="Actuator" Relationship="WebofThingsModel.FK_Actuator_Device" FromRole="Device" ToRole="Actuator" />
         </EntityType>
-        <EntityType Name="Properties">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Readonly" Type="Boolean" />
-          <Property Name="Actuator_Ref" Type="Int32" />
-          <NavigationProperty Name="Actuator" Relationship="Self.FK_Properties_Actuator" FromRole="Properties" ToRole="Actuator" />
-        </EntityType>
-        <EntityType Name="Resource">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Device_Ref" Type="Int32" />
-          <NavigationProperty Name="Device" Relationship="Self.FK_Resource_Device" FromRole="Resource" ToRole="Device" />
-        </EntityType>
+        <EntityContainer Name="WebofThingsEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Device" EntityType="Self.Device" />
+          <EntitySet Name="Sensor" EntityType="WebofThingsModel.Sensor" />
+          <EntitySet Name="sysdiagrams" EntityType="WebofThingsModel.sysdiagrams" />
+          <AssociationSet Name="FK_Sensor_Device" Association="WebofThingsModel.FK_Sensor_Device">
+            <End Role="Device" EntitySet="Device" />
+            <End Role="Sensor" EntitySet="Sensor" />
+          </AssociationSet>
+          <EntitySet Name="Actuator" EntityType="WebofThingsModel.Actuator" />
+          <AssociationSet Name="FK_Actuator_Device" Association="WebofThingsModel.FK_Actuator_Device">
+            <End Role="Device" EntitySet="Device" />
+            <End Role="Actuator" EntitySet="Actuator" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Sensor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -237,69 +129,21 @@
           <Property Name="TimeStamp" Type="DateTime" Precision="3" />
           <Property Name="Frequency" Type="Int32" />
           <Property Name="Device_Ref" Type="Int32" />
-          <NavigationProperty Name="Device" Relationship="Self.FK_Sensor_Device" FromRole="Sensor" ToRole="Device" />
+          <NavigationProperty Name="Device" Relationship="WebofThingsModel.FK_Sensor_Device" FromRole="Sensor" ToRole="Device" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_Actuator_Device">
-          <End Role="Device" Type="Self.Device" Multiplicity="0..1" />
-          <End Role="Actuator" Type="Self.Actuator" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Device">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Actuator">
-              <PropertyRef Name="Device_Ref" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Command_Actuator">
-          <End Role="Actuator" Type="Self.Actuator" Multiplicity="0..1" />
-          <End Role="Command" Type="Self.Command" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Actuator">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Command">
-              <PropertyRef Name="Actuator_Ref" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Properties_Actuator">
-          <End Role="Actuator" Type="Self.Actuator" Multiplicity="0..1" />
-          <End Role="Properties" Type="Self.Properties" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Actuator">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Properties">
-              <PropertyRef Name="Actuator_Ref" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Resource_Device">
-          <End Role="Device" Type="Self.Device" Multiplicity="0..1" />
-          <End Role="Resource" Type="Self.Resource" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Device">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Resource">
-              <PropertyRef Name="Device_Ref" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Sensor_Device">
-          <End Role="Device" Type="Self.Device" Multiplicity="0..1" />
-          <End Role="Sensor" Type="Self.Sensor" Multiplicity="*" />
+          <End Type="WebofThingsModel.Device" Role="Device" Multiplicity="0..1" />
+          <End Type="WebofThingsModel.Sensor" Role="Sensor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Device">
               <PropertyRef Name="Id" />
@@ -309,61 +153,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WebofThingsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Actuator" EntityType="Self.Actuator" />
-          <EntitySet Name="Command" EntityType="Self.Command" />
-          <EntitySet Name="Device" EntityType="Self.Device" />
-          <EntitySet Name="Properties" EntityType="Self.Properties" />
-          <EntitySet Name="Resource" EntityType="Self.Resource" />
-          <EntitySet Name="Sensor" EntityType="Self.Sensor" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <AssociationSet Name="FK_Actuator_Device" Association="Self.FK_Actuator_Device">
-            <End Role="Device" EntitySet="Device" />
-            <End Role="Actuator" EntitySet="Actuator" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Command_Actuator" Association="Self.FK_Command_Actuator">
-            <End Role="Actuator" EntitySet="Actuator" />
-            <End Role="Command" EntitySet="Command" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Properties_Actuator" Association="Self.FK_Properties_Actuator">
-            <End Role="Actuator" EntitySet="Actuator" />
-            <End Role="Properties" EntitySet="Properties" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Resource_Device" Association="Self.FK_Resource_Device">
-            <End Role="Device" EntitySet="Device" />
-            <End Role="Resource" EntitySet="Resource" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sensor_Device" Association="Self.FK_Sensor_Device">
-            <End Role="Device" EntitySet="Device" />
-            <End Role="Sensor" EntitySet="Sensor" />
-          </AssociationSet>
-        </EntityContainer>
+        <EntityType Name="Actuator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Device_Ref" Type="Int32" />
+          <NavigationProperty Name="Device" Relationship="WebofThingsModel.FK_Actuator_Device" FromRole="Actuator" ToRole="Device" />
+        </EntityType>
+        <Association Name="FK_Actuator_Device">
+          <End Type="WebofThingsModel.Device" Role="Device" Multiplicity="0..1" />
+          <End Type="WebofThingsModel.Actuator" Role="Actuator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Device">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Actuator">
+              <PropertyRef Name="Device_Ref" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WebofThingsModelStoreContainer" CdmEntityContainer="WebofThingsEntities">
-          <EntitySetMapping Name="Actuator">
-            <EntityTypeMapping TypeName="WebofThingsModel.Actuator">
-              <MappingFragment StoreEntitySet="Actuator">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Device_Ref" ColumnName="Device_Ref" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Command">
-            <EntityTypeMapping TypeName="WebofThingsModel.Command">
-              <MappingFragment StoreEntitySet="Command">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Actuator_Ref" ColumnName="Actuator_Ref" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="WebofThingsModelStoreContainer" CdmEntityContainer="WebofThingsEntities1">
           <EntitySetMapping Name="Device">
             <EntityTypeMapping TypeName="WebofThingsModel.Device">
               <MappingFragment StoreEntitySet="Device">
@@ -375,49 +192,39 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Properties">
-            <EntityTypeMapping TypeName="WebofThingsModel.Properties">
-              <MappingFragment StoreEntitySet="Properties">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Readonly" ColumnName="Readonly" />
-                <ScalarProperty Name="Actuator_Ref" ColumnName="Actuator_Ref" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Resource">
-            <EntityTypeMapping TypeName="WebofThingsModel.Resource">
-              <MappingFragment StoreEntitySet="Resource">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Device_Ref" ColumnName="Device_Ref" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Sensor">
             <EntityTypeMapping TypeName="WebofThingsModel.Sensor">
               <MappingFragment StoreEntitySet="Sensor">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Unit" ColumnName="Unit" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
-                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
                 <ScalarProperty Name="Device_Ref" ColumnName="Device_Ref" />
+                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="WebofThingsModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Actuator">
+            <EntityTypeMapping TypeName="WebofThingsModel.Actuator">
+              <MappingFragment StoreEntitySet="Actuator">
+                <ScalarProperty Name="Device_Ref" ColumnName="Device_Ref" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
