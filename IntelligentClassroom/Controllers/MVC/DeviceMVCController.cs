@@ -41,9 +41,15 @@ namespace IntelligentClassroom.Controllers.MVC
                 }
             }
             return View(devices);
-        } 
+        }
         #endregion
 
+        #region [-Create()-]
+        public ActionResult Create()
+        {
+            return View();
+        } 
+        #endregion
 
     }
 }
