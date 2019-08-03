@@ -15,5 +15,7 @@ namespace IntelligentClassroom.Models.POCO
         public string Value { get; set; }
         public Nullable<System.DateTime> TimeStamp { get; set; }
         public Nullable<int> Frequency { get; set; }
+
+        public Nullable<int> Device_Ref { get; set; }
     }
 }

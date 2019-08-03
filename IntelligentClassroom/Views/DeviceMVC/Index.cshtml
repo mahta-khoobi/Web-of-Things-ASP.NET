@@ -4,12 +4,20 @@
     ViewBag.Title = "Devices";
 }
 
-<h2>Index</h2>
+<style>
+    p,table{
+        font-size:large;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        
+    }
 
-<p>
+</style>
+<h2>List of Devices</h2>
+
+<p >
     @Html.ActionLink("Create a new Device", "Create")
 </p>
-<table class="table">
+<table class="table table-hover table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)

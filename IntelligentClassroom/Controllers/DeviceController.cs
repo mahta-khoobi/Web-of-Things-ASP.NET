@@ -86,7 +86,7 @@ namespace IntelligentClassroom.Controllers
         }
         #endregion
 
-        #region [- Post_Device(Models.EF.Device device) -]
+        #region [-Post_Device(Models.EF.Device device)-]
         public async Task<IHttpActionResult> Post_Device(Models.EF.Device device)
         {
             // var device = jObject["device"].ToObject<Models.EF.Device>();
@@ -95,23 +95,35 @@ namespace IntelligentClassroom.Controllers
         }
         #endregion
 
-        #region [- Put_Device(JObject jObject) -]
-        public async Task<IHttpActionResult> Put_Device(JObject jObject)
+        #region [-Put_Device(Models.EF.Device device)-]
+        public async Task<IHttpActionResult> Put_Device(Models.EF.Device device)
         {
-            var device = jObject["device"].ToObject<Models.EF.Device>();
+          //  var device = jObject["device"].ToObject<Models.EF.Device>();
             await Ref_DeviceCrud.Update(device);
             return Ok();
 
         }
         #endregion
 
-        #region [-Delete_Device(JObject jObject)-]
-        public async Task<IHttpActionResult> Delete_Device(JObject jObject)
+        #region [-Delete(int id)-]
+        public async Task<IHttpActionResult> Delete(int id)
         {
-            var device = jObject["device"].ToObject<Models.EF.Device>();
-            await Ref_DeviceCrud.Remove(device);
+            if (id <= 0)
+                return BadRequest("Not a valid student id");
+
+            using (var ctx = new Models.EF.WebofThingsEntities1())
+            {
+                var device = ctx.Device
+                    .Where(d => d.Id == id)
+                    .FirstOrDefault();
+
+                await Ref_DeviceCrud.Remove(device);
+            }
+
             return Ok();
         } 
         #endregion
+
+
     }
 }

@@ -41,7 +41,8 @@ namespace IntelligentClassroom.Controllers
                         TimeStamp = s.TimeStamp,
                         Type = s.Type,
                         Unit = s.Unit,
-                        Value = s.Value
+                        Value = s.Value,
+                        Device_Ref=s.Device_Ref
 
 
                     }).ToList<Models.POCO.SensorViewModel>();
@@ -64,7 +65,7 @@ namespace IntelligentClassroom.Controllers
             using (var db = new Models.EF.WebofThingsEntities1())
             {
                 sensor = db.Sensor
-                    .Where(s => s.Id == id)
+                    .Where(s => s.Device_Ref == id)
                     .Select(s => new Models.POCO.SensorViewModel()
                     {
                         Id = s.Id,
@@ -74,7 +75,9 @@ namespace IntelligentClassroom.Controllers
                         TimeStamp = s.TimeStamp,
                         Type=s.Type,
                         Unit=s.Unit,
-                        Value=s.Value
+                        Value=s.Value,
+                        Device_Ref=s.Device_Ref
+                        
 
 
                     }).FirstOrDefault<Models.POCO.SensorViewModel>();
