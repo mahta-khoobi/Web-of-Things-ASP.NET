@@ -302,6 +302,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\DeviceMVC\Index.cshtml" />
     <Content Include="Views\DeviceMVC\Create.cshtml" />
+    <Content Include="Views\DeviceMVC\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

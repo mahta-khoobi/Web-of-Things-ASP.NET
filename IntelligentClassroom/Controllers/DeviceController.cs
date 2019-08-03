@@ -86,16 +86,16 @@ namespace IntelligentClassroom.Controllers
         }
         #endregion
 
-        #region [- Post_Device(JObject jObject)-]
-        public async Task<IHttpActionResult> Post_Device(JObject jObject)
+        #region [- Post_Device(Models.EF.Device device) -]
+        public async Task<IHttpActionResult> Post_Device(Models.EF.Device device)
         {
-            var device = jObject["device"].ToObject<Models.EF.Device>();
+            // var device = jObject["device"].ToObject<Models.EF.Device>();
             await Ref_DeviceCrud.Insert(device);
             return Ok();
         }
         #endregion
 
-        #region [-Put_Device(JObject jObject)-]
+        #region [- Put_Device(JObject jObject) -]
         public async Task<IHttpActionResult> Put_Device(JObject jObject)
         {
             var device = jObject["device"].ToObject<Models.EF.Device>();
