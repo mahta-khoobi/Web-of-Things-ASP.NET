@@ -62,7 +62,9 @@
                 @Html.DisplayFor(modelItem => item.Unit)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Value)
+                
+                @Html.ActionLink(item.Value, "GetValue", new { value = item.Value })
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TimeStamp)
@@ -75,7 +77,6 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>

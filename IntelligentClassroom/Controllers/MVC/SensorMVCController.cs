@@ -168,5 +168,10 @@ namespace IntelligentClassroom.Controllers.MVC
             return View();
         }
         #endregion
+
+        public ActionResult GetValue()
+        {
+            return View();
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace IntelligentClassroom.Controllers.MVC
     {
         //http://localhost:55692/devicemvc
 
+            
         #region [-Index()-]
     
         public ActionResult Index()
@@ -204,6 +205,20 @@ namespace IntelligentClassroom.Controllers.MVC
             return View();
         }
         #endregion
+
+        #region [-Create(): Get-]
+        public ActionResult Get_PicturesEverySpecificDay()
+        {
+            if (true)
+            {
+
+            }
+            return View();
+        }
+        #endregion
+
+
+
 
 
 

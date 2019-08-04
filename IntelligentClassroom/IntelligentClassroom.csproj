@@ -227,6 +227,7 @@
     <Compile Include="Models\EF\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\POCO\ClassTime.cs" />
     <Compile Include="Models\POCO\DeviceViewModel.cs" />
     <Compile Include="Models\POCO\SensorViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -383,6 +384,7 @@
     <Content Include="Views\SensorMVC\Error.cshtml" />
     <Content Include="Views\SensorMVC\Edit.cshtml" />
     <Content Include="Views\DeviceMVC\SensorDetails.cshtml" />
+    <Content Include="Views\SensorMVC\GetValue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
