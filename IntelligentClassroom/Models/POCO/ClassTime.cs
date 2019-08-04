@@ -12,5 +12,7 @@ namespace IntelligentClassroom.Models.POCO
         public int CourseCode { get; set; }
         public DayOfWeek CourseDay { get; set; }
         public DateTime CourseTime { get; set; }
+        public int Device_Ref { get; set; }
+        public int Actuator_Ref { get; set; }
     }
 }

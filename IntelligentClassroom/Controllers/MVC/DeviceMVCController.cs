@@ -14,13 +14,71 @@ namespace IntelligentClassroom.Controllers.MVC
 {
     public class DeviceMVCController : Controller
     {
+
+        //List<Models.DTO.Device> Devices = new List<Models.DTO.Device>
+        //{
+        //    new Models.DTO.Device{
+        //        Id =1,
+        //        Name ="RaspberryPi",
+        //        Description ="My WoT Raspberry pi 2",
+        //        CurrentStatus ="Live",
+        //        Version ="v0.1",
+        //        Resource= new Models.DTO.Resource
+        //        {
+        //            Sensors = new List<Models.DTO.Sensor>{ new Models.DTO.Sensor { Id = 1, Name = "Temperature", Description = "My Pi temperature", Type = "float", Unit = "celsius", Value = "27.5", TimeStamp = DateTime.Today, Frequency = 5000 } },
+        //            Actuators = new List<Models.DTO.Actuator>(),
+        //            Ref_Device=1
+
+        //        }
+
+        //    },
         //http://localhost:55692/devicemvc
         public DeviceMVCController()
         {
-            ListOfCourses = new List<ClassTime>(
-                new ClassTime 
+            ListOfCourses = new List<ClassTime> {
+                new ClassTime
+                { ClassCode=202,
+                ClassName="202",
+                CourseCode=123,
+                CourseDay=DayOfWeek.Monday,
+                CourseTime= DateTime.Now,
+                Device_Ref=1,
+                Actuator_Ref=1
+                }
+                ,
+                new ClassTime{
+                ClassCode =501,
+                ClassName="501",
+                CourseCode=434,
+                CourseDay=DayOfWeek.Saturday,
+                CourseTime= DateTime.Now,
+                Device_Ref=1,
+                Actuator_Ref=1
+                },
+                new ClassTime
+                {
+                ClassCode=101,
+                ClassName="101",
+                CourseCode=234,
+                CourseDay=DayOfWeek.Sunday,
+                CourseTime= DateTime.Now,
+                Device_Ref=1,
+                Actuator_Ref=1
                 
-                );
+                },
+                new ClassTime
+                {
+                ClassCode=202,
+                ClassName="202",
+                CourseCode=234,
+                CourseDay=DayOfWeek.Tuesday,
+                CourseTime= DateTime.Now,
+                Device_Ref=1,
+                Actuator_Ref=1
+                
+                }
+
+               };
         }
 
       public List<Models.POCO.ClassTime> ListOfCourses { get; set; }
@@ -217,10 +275,18 @@ namespace IntelligentClassroom.Controllers.MVC
         #region [-Get_PicturesEverySpecificDay(): Get-]
         public ActionResult Get_PicturesEverySpecificDay()
         {
-            
-            if (true)
+            Models.EF.Actuator CameraActuator = new Models.EF.Actuator();
+            foreach (var course in ListOfCourses)
             {
-
+                if(course.CourseTime.Hour==DateTime.Now.Hour && course.CourseDay == DateTime.Now.DayOfWeek)
+                {
+                    CameraActuator.Id = course.Actuator_Ref;
+                    CameraActuator.Name = "Camera Actuator";
+                    CameraActuator.Device_Ref = course.Device_Ref;
+                    CameraActuator.Command = "Write";
+                    
+                    Edit(course.ClassCode);
+                }
             }
             return View();
         }

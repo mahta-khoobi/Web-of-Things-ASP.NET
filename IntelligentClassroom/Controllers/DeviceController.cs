@@ -86,6 +86,8 @@ namespace IntelligentClassroom.Controllers
         }
         #endregion
 
+        
+
         #region [-Post_Device(Models.EF.Device device)-]
         public async Task<IHttpActionResult> Post_Device(Models.EF.Device device)
         {
