@@ -15,7 +15,15 @@ namespace IntelligentClassroom.Controllers.MVC
     public class DeviceMVCController : Controller
     {
         //http://localhost:55692/devicemvc
+        public DeviceMVCController()
+        {
+            ListOfCourses = new List<ClassTime>(
+                new ClassTime 
+                
+                );
+        }
 
+      public List<Models.POCO.ClassTime> ListOfCourses { get; set; }
             
         #region [-Index()-]
     
@@ -206,9 +214,10 @@ namespace IntelligentClassroom.Controllers.MVC
         }
         #endregion
 
-        #region [-Create(): Get-]
+        #region [-Get_PicturesEverySpecificDay(): Get-]
         public ActionResult Get_PicturesEverySpecificDay()
         {
+            
             if (true)
             {
 
