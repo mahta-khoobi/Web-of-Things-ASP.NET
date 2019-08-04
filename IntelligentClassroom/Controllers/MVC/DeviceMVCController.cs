@@ -15,23 +15,7 @@ namespace IntelligentClassroom.Controllers.MVC
     public class DeviceMVCController : Controller
     {
 
-        //List<Models.DTO.Device> Devices = new List<Models.DTO.Device>
-        //{
-        //    new Models.DTO.Device{
-        //        Id =1,
-        //        Name ="RaspberryPi",
-        //        Description ="My WoT Raspberry pi 2",
-        //        CurrentStatus ="Live",
-        //        Version ="v0.1",
-        //        Resource= new Models.DTO.Resource
-        //        {
-        //            Sensors = new List<Models.DTO.Sensor>{ new Models.DTO.Sensor { Id = 1, Name = "Temperature", Description = "My Pi temperature", Type = "float", Unit = "celsius", Value = "27.5", TimeStamp = DateTime.Today, Frequency = 5000 } },
-        //            Actuators = new List<Models.DTO.Actuator>(),
-        //            Ref_Device=1
-
-        //        }
-
-        //    },
+   
         //http://localhost:55692/devicemvc
         public DeviceMVCController()
         {

@@ -1,17 +1,4 @@
-﻿<!--
-=========================================================
- Light Bootstrap Dashboard - v2.0.1
-=========================================================
-
- Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard
- Copyright 2019 Creative Tim (https://www.creative-tim.com)
- Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard/blob/master/LICENSE)
-
- Coded by Creative Tim
-
-=========================================================
-
- The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  -->
+﻿
 
 @{
     ViewBag.Title = "Home";
@@ -73,11 +60,7 @@
 
     <div class="wrapper">
         <div class="sidebar" data-image="~/Content/assets/img/sidebar-5.jpg">
-            <!--
-                Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-                Tip 2: you can also add an image using data-image tag
-            -->
+           
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="http://localhost:55692/Home/Index" class="simple-text">
@@ -99,34 +82,24 @@
                     </li>
                     <li>
                         <a class="nav-link" href="http://localhost:55692/devicemvc/Index">
-                            <i class="nc-icon nc-notes"></i>
-                            <p>Table List</p>
+                            <i class="nc-icon nc-cctv"></i>
+                            <p>Device List</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./typography.html">
-                            <i class="nc-icon nc-paper-2"></i>
-                            <p>Typography</p>
+                        <a class="nav-link" href="http://localhost:55692/sensormvc/Index">
+                            <i class="nc-icon nc-audio-92"></i>
+                            <p>Sensor List</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./icons.html">
-                            <i class="nc-icon nc-atom"></i>
-                            <p>Icons</p>
+                        <a class="nav-link" href="#">
+                            <i class="nc-icon nc-tv-2"></i>
+                            <p>Actuator List</p>
                         </a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="./maps.html">
-                            <i class="nc-icon nc-pin-3"></i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./notifications.html">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
+                 
+                
                     
                 </ul>
             </div>
@@ -169,61 +142,47 @@
                         <div class="col-md-4">
                             <div class="card ">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Email Statistics</h4>
-                                    <p class="card-category">Last Campaign Performance</p>
+                                    <h4 class="card-title">Watch Devices</h4>
+                                    <p class="card-category">Last Device Performance</p>
                                 </div>
                                 <div class="card-body ">
-                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                    </div>
+                                    <img src="~/Content/assets/img/index.png" alt="Devices" />
                                     <hr>
                                     <div class="stats">
-                                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+                                        <a href="http://localhost:55692/devicemvc/Index">See the list</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <div class="card ">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Users Behavior</h4>
+                                    <h4 class="card-title">Watch Sensors</h4>
                                     <p class="card-category">24 Hours performance</p>
                                 </div>
                                 <div class="card-body ">
-                                    <div id="chartHours" class="ct-chart"></div>
-                                </div>
-                                <div class="card-footer ">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Click
-                                        <i class="fa fa-circle text-warning"></i> Click Second Time
-                                    </div>
+                                    <img src="~/Content/assets/img/sensor.jpg" alt="Sensors" />
                                     <hr>
+
+
+
                                     <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
+                                        <a href="http://localhost:55692/sensormvc/Index">See the list</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="card ">
                                 <div class="card-header ">
-                                    <h4 class="card-title">2017 Sales</h4>
-                                    <p class="card-category">All products including Taxes</p>
+                                    <h4 class="card-title">Watch Actuators</h4>
+                                    <p class="card-category">See the last pictures of the classes</p>
                                 </div>
                                 <div class="card-body ">
-                                    <div id="chartActivity" class="ct-chart"></div>
+                                    <img src="~/Content/assets/img/images.png" alt="Actuators" />
                                 </div>
                                 <div class="card-footer ">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                                        <i class="fa fa-circle text-danger"></i> BMW 5 Series
-                                    </div>
+                                   
                                     <hr>
                                     <div class="stats">
                                         <i class="fa fa-check"></i> Data information certified
@@ -231,7 +190,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-md-12">
                             <div class="card  card-tasks">
                                 <div class="card-header ">
                                     <h4 class="card-title">Tasks</h4>

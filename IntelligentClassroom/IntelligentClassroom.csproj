@@ -251,9 +251,12 @@
     <Content Include="Content\assets\img\faces\tim_vector.jpe" />
     <Content Include="Content\assets\img\favicon.ico" />
     <Content Include="Content\assets\img\full-screen-image-3.jpg" />
+    <Content Include="Content\assets\img\images.png" />
+    <Content Include="Content\assets\img\index.png" />
     <Content Include="Content\assets\img\loading-bubbles.svg" />
     <Content Include="Content\assets\img\mask.png" />
     <Content Include="Content\assets\img\new_logo.png" />
+    <Content Include="Content\assets\img\sensor.jpg" />
     <Content Include="Content\assets\img\sidebar-1.jpg" />
     <Content Include="Content\assets\img\sidebar-2.jpg" />
     <Content Include="Content\assets\img\sidebar-3.jpg" />
