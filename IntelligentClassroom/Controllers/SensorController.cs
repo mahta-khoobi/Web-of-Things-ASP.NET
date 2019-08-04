@@ -65,7 +65,7 @@ namespace IntelligentClassroom.Controllers
             using (var db = new Models.EF.WebofThingsEntities1())
             {
                 sensor = db.Sensor
-                    .Where(s => s.Device_Ref == id)
+                    .Where(s => s.Id == id)
                     .Select(s => new Models.POCO.SensorViewModel()
                     {
                         Id = s.Id,
@@ -78,6 +78,42 @@ namespace IntelligentClassroom.Controllers
                         Value=s.Value,
                         Device_Ref=s.Device_Ref
                         
+
+
+                    }).FirstOrDefault<Models.POCO.SensorViewModel>();
+            }
+
+            if (sensor == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(sensor);
+        }
+        #endregion
+
+        #region [-Get_SensorByDeviceId(int id)-]
+        public IHttpActionResult Get_SensorByDeviceId(int device_ref)
+        {
+
+            Models.POCO.SensorViewModel sensor = null;
+
+            using (var db = new Models.EF.WebofThingsEntities1())
+            {
+                sensor = db.Sensor
+                    .Where(s => s.Device_Ref == device_ref)
+                    .Select(s => new Models.POCO.SensorViewModel()
+                    {
+                        Id = s.Id,
+                        Name = s.Name,
+                        Description = s.Description,
+                        Frequency = s.Frequency,
+                        TimeStamp = s.TimeStamp,
+                        Type = s.Type,
+                        Unit = s.Unit,
+                        Value = s.Value,
+                        Device_Ref = s.Device_Ref
+
 
 
                     }).FirstOrDefault<Models.POCO.SensorViewModel>();
@@ -112,10 +148,20 @@ namespace IntelligentClassroom.Controllers
         #endregion
 
         #region [-Delete_Sensor(JObject jObject)-]
-        public async Task<IHttpActionResult> Delete_Sensor(Models.EF.Sensor sensor)
+        public async Task<IHttpActionResult> Delete_Sensor(int id)
         {
-            //var sensor = jObject["sensor"].ToObject<Models.EF.Sensor>();
-            await Ref_SensorCrud.Remove(sensor);
+            if (id <= 0)
+                return BadRequest("Not a valid student id");
+
+            using (var ctx = new Models.EF.WebofThingsEntities1())
+            {
+                var sensor = ctx.Sensor
+                    .Where(s => s.Id == id)
+                    .FirstOrDefault();
+
+                await Ref_SensorCrud.Remove(sensor);
+            }
+
             return Ok();
         }
         #endregion

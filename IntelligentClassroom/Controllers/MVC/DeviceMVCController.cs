@@ -14,9 +14,10 @@ namespace IntelligentClassroom.Controllers.MVC
 {
     public class DeviceMVCController : Controller
     {
-        #region [-Index()-]
-        // GET: DeviceMVC
         //http://localhost:55692/devicemvc
+
+        #region [-Index()-]
+    
         public ActionResult Index()
         {
             IEnumerable<DeviceViewModel> devices = null;
@@ -50,7 +51,7 @@ namespace IntelligentClassroom.Controllers.MVC
         #endregion
 
         #region [-Details(): Get-]
-        public ActionResult Details(int id)
+        public ActionResult SensorDetails(int id)
         {
             Models.POCO.SensorViewModel sensor = null;
 
@@ -58,7 +59,7 @@ namespace IntelligentClassroom.Controllers.MVC
             {
                 client.BaseAddress = new Uri("http://localhost:55692/api/");
                 //HTTP GET
-                var responseTask = client.GetAsync("sensor?id=" + id.ToString());
+                var responseTask = client.GetAsync("sensor?device_ref=" + id.ToString());
                 responseTask.Wait();
 
                 var result = responseTask.Result;

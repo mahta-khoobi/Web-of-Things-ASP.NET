@@ -10,7 +10,7 @@ namespace IntelligentClassroom.Controllers.MVC
 {
     public class SensorMVCController : Controller
     {
-        // GET: SensorMVC
+       
         //http://localhost:55692/sensormvc
 
         #region [-Index()-]
@@ -148,14 +148,16 @@ namespace IntelligentClassroom.Controllers.MVC
                 if (result.IsSuccessStatusCode)
                 {
 
-                    return RedirectToAction("Index");
+                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    return RedirectToAction("Error");
+                     return RedirectToAction("Error");
                 }
+
             }
 
+      
 
         }
         #endregion

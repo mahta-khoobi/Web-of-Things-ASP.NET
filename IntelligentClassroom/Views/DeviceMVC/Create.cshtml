@@ -1,16 +1,16 @@
 ﻿@model IntelligentClassroom.Models.EF.Device
 
 @{
-    ViewBag.Title = "Create a new device";
+    ViewBag.Title = "Create device";
 }
 
 <h2>Create a new device</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
 
         <hr />
@@ -53,12 +53,13 @@
             </div>
         </div>
     </div>
-}
     <div>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     </div>
-           
-     
+}
+
+
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

@@ -377,9 +377,12 @@
     <Content Include="Views\DeviceMVC\Index.cshtml" />
     <Content Include="Views\DeviceMVC\Create.cshtml" />
     <Content Include="Views\DeviceMVC\Edit.cshtml" />
-    <Content Include="Views\DeviceMVC\Details.cshtml" />
     <Content Include="Views\DeviceMVC\Error.cshtml" />
     <Content Include="Views\SensorMVC\Index.cshtml" />
+    <Content Include="Views\SensorMVC\Create.cshtml" />
+    <Content Include="Views\SensorMVC\Error.cshtml" />
+    <Content Include="Views\SensorMVC\Edit.cshtml" />
+    <Content Include="Views\DeviceMVC\SensorDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
