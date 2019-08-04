@@ -192,6 +192,7 @@
     <Compile Include="Controllers\DeviceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MVC\DeviceMVCController.cs" />
+    <Compile Include="Controllers\MVC\SensorMVCController.cs" />
     <Compile Include="Controllers\SensorController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -378,6 +379,7 @@
     <Content Include="Views\DeviceMVC\Edit.cshtml" />
     <Content Include="Views\DeviceMVC\Details.cshtml" />
     <Content Include="Views\DeviceMVC\Error.cshtml" />
+    <Content Include="Views\SensorMVC\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

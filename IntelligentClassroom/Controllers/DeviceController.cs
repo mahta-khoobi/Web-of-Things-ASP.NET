@@ -40,9 +40,9 @@ namespace IntelligentClassroom.Controllers
                                 Description = d.Description,
                                 CurrentStatus = d.CurrentStatus,
                                 Version = d.Version
-                                //Sensor= d.Sensor == null || includeAddress == false ? null : new Models.POCO.SensorViewModel()
+                                //Sensor = d.Sensor == null || includeAddress == false ? null : new Models.POCO.SensorViewModel()
                                 //{
-                                   
+                                       
                                 //}
                             }).ToList<Models.POCO.DeviceViewModel>();
             }

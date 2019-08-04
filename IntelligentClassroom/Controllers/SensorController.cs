@@ -93,18 +93,18 @@ namespace IntelligentClassroom.Controllers
         #endregion
 
         #region [-Post_Sensor(JObject jObject)-]
-        public async Task<IHttpActionResult> Post_Sensor(JObject jObject)
+        public async Task<IHttpActionResult> Post_Sensor(Models.EF.Sensor sensor)
         {
-            var sensor = jObject["sensor"].ToObject<Models.EF.Sensor>();
+            //var sensor = jObject["sensor"].ToObject<Models.EF.Sensor>();
             await Ref_SensorCrud.Insert(sensor);
             return Ok();
         }
         #endregion
 
         #region [-Put_Sensor(JObject jObject)-]
-        public async Task<IHttpActionResult> Put_Sensor(JObject jObject)
+        public async Task<IHttpActionResult> Put_Sensor(Models.EF.Sensor sensor)
         {
-            var sensor = jObject["sensor"].ToObject<Models.EF.Sensor>();
+            //var sensor = jObject["sensor"].ToObject<Models.EF.Sensor>();
             await Ref_SensorCrud.Update(sensor);
             return Ok();
 
@@ -112,9 +112,9 @@ namespace IntelligentClassroom.Controllers
         #endregion
 
         #region [-Delete_Sensor(JObject jObject)-]
-        public async Task<IHttpActionResult> Delete_Sensor(JObject jObject)
+        public async Task<IHttpActionResult> Delete_Sensor(Models.EF.Sensor sensor)
         {
-            var sensor = jObject["sensor"].ToObject<Models.EF.Sensor>();
+            //var sensor = jObject["sensor"].ToObject<Models.EF.Sensor>();
             await Ref_SensorCrud.Remove(sensor);
             return Ok();
         }
